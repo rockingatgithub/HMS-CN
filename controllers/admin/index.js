@@ -23,7 +23,10 @@ module.exports.adminLogin = async (req, res) => {
         if(isEmailPresent){
             if(isEmailPresent.password === req.body.password){
 
-                return res.send('User signed in successfully!');
+                return res.json({
+                    message: "Admin successfully loggedIn!",
+                    admin: isEmailPresent
+                })
 
             }
 
