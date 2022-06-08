@@ -25,10 +25,13 @@ module.exports.patientLogin = async (req, res) => {
         if(isEmailPresent){
             if(isEmailPresent.password === req.body.password){
 
-                return res.json({
-                    message: "Doctor successfully loggedIn!",
-                    doctor: isEmailPresent
-                })
+                // return res.json({
+                //     message: "Doctor successfully loggedIn!",
+                //     patient: isEmailPresent
+                // })
+
+                return res.redirect(`/patient/profile/${isEmailPresent._id}`)
+
 
             }
 
@@ -41,5 +44,22 @@ module.exports.patientLogin = async (req, res) => {
 
     }
 
+
+}
+
+
+module.exports.patientProfile = async (req, res) => {
+
+
+    console.log(req.params.userId);
+
+    let patient = await Patient.findById(req.params.userId);
+
+
+    return res.render('profile.ejs', {
+
+        user: patient
+
+    })
 
 }

@@ -1,4 +1,5 @@
 const Appointment = require("../../models/appointment");
+const Doctor = require('../../models/doctor');
 
 module.exports.bookAppointment = async (req, res) => {
 
@@ -36,6 +37,21 @@ module.exports.changeAppointment = async (req, res) => {
     return res.json({
         message: "Appointment changed successfully!",
         appointment
+    })
+
+
+}
+
+
+module.exports.appointmentPage = async (req, res) => {
+
+    let doctors  = await Doctor.find({});
+
+    return res.render('appointment.ejs', {
+
+        doctors,
+        patient: req.params.userId
+
     })
 
 

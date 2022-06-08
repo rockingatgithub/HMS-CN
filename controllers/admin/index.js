@@ -23,10 +23,12 @@ module.exports.adminLogin = async (req, res) => {
         if(isEmailPresent){
             if(isEmailPresent.password === req.body.password){
 
-                return res.json({
-                    message: "Admin successfully loggedIn!",
-                    admin: isEmailPresent
-                })
+                // return res.json({
+                //     message: "Admin successfully loggedIn!",
+                //     admin: isEmailPresent
+                // })
+
+                return res.redirect(`/admin/profile/${isEmailPresent._id}`)
 
             }
 
@@ -38,6 +40,23 @@ module.exports.adminLogin = async (req, res) => {
 
 
     }
+
+
+}
+
+
+module.exports.adminProfile =async ( req, res ) => {
+
+    console.log(req.params.userId);
+
+    let admin = await Admin.findById(req.params.userId);
+
+
+    return res.render('profile.ejs', {
+
+        admin: admin
+
+    })
 
 
 }
