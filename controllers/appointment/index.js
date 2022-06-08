@@ -32,12 +32,14 @@ module.exports.changeAppointment = async (req, res) => {
 
     console.log(req.params, req.query);
 
-    let appointment = await Appointment.findOneAndUpdate({ _id : req.params.apId}, {  status: req.query.status  }).populate('doctor').populate('patient')
+    let appointment = await Appointment.findOneAndUpdate({ _id : req.params.apId}, {  status: req.query.status  });
 
-    return res.json({
-        message: "Appointment changed successfully!",
-        appointment
-    })
+    // return res.json({
+    //     message: "Appointment changed successfully!",
+    //     appointment
+    // })
+
+    return res.redirect('back');
 
 
 }

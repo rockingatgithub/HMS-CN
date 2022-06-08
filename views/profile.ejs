@@ -17,7 +17,34 @@
 
         <span> Name:  <%= user.email  %>  </span>
 
-        <a href="/appoint/schedule/<%= user._id %>"  >  Want to book an appointment  </a>
+      <% if(userType === 'patient') {%>  <a href="/appoint/schedule/<%= user._id %>"  >  Want to book an appointment  </a>  <%}%>
+
+      <% if(userType === 'doctor') { %>   
+        
+        <% for(  let appointment of appointments  ) { %>  
+
+            <div>
+
+                <span>  <%=  appointment.patient.email  %>   </span>
+                <span>  <%=  appointment.status  %>   </span>
+
+                <a href="/appoint/setStatus/<%= appointment._id %>?status=accepted" >  Accept appointment   </a>
+                <a href="/appoint/setStatus/<%= appointment._id %>?status=rejected" >  Reject appointment   </a>
+
+                <h3>
+                    Generate Report
+                </h3>
+
+                <a  href="/report/generate/<%= appointment._id %>?status=positive" > Generate Positive Report  </a>
+                <a  href="/report/generate/<%= appointment._id %>?status=negative" > Generate negative Report  </a>
+
+
+
+            </div>
+
+            <% } %>
+        
+        <% } %>
 
     </div>
 

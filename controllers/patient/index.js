@@ -58,7 +58,8 @@ module.exports.patientProfile = async (req, res) => {
 
     return res.render('profile.ejs', {
 
-        user: patient
+        user: patient,
+        userType: 'patient'
 
     })
 

@@ -54,7 +54,8 @@ module.exports.adminProfile =async ( req, res ) => {
 
     return res.render('profile.ejs', {
 
-        admin: admin
+        user: admin,
+        userType: 'admin'
 
     })
 
