@@ -25,11 +25,19 @@
 
             <div>
 
-                <span>  <%=  appointment.patient.email  %>   </span>
-                <span>  <%=  appointment.status  %>   </span>
+                <h3>
+                    Appointment
+                </h3>
 
-                <a href="/appoint/setStatus/<%= appointment._id %>?status=accepted" >  Accept appointment   </a>
-                <a href="/appoint/setStatus/<%= appointment._id %>?status=rejected" >  Reject appointment   </a>
+                <span>  <%=  appointment.patient.email  %>   </span>
+                <span id="<%= appointment._id %>" >  <%=  appointment.status  %>   </span>
+
+                <!-- <a href="/appoint/setStatus/<%= appointment._id %>?status=accepted" >  Accept appointment   </a>
+                <a href="/appoint/setStatus/<%= appointment._id %>?status=rejected" >  Reject appointment   </a> -->
+
+                <button onclick="changeAppoitmentStatus('<%= appointment._id %>', 'accepted')" >  Accept Appointment </button>
+                <button onclick="changeAppoitmentStatus('<%= appointment._id %>', 'rejected')" >  Reject Appointment </button>
+
 
                 <h3>
                     Generate Report
@@ -47,6 +55,24 @@
         <% } %>
 
     </div>
+
+    <script>
+
+        async function changeAppoitmentStatus (appID, status) {
+
+          let response =   await fetch(
+                `http://localhost:8000/v1/api/appoint/setStatus/${appID}?status=${status}`, 
+                { method: "PATCH",
+                });
+
+            let parsedResponse = await response.json();
+
+            let statusSpan = document.getElementById(`${parsedResponse.appointment._id}`);
+            statusSpan.innerText =  parsedResponse.appointment.status;
+
+        }
+
+    </script>
 
 </body>
 </html>

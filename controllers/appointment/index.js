@@ -58,3 +58,25 @@ module.exports.appointmentPage = async (req, res) => {
 
 
 }
+
+
+module.exports.changeAppointmentV1 = async (req, res) => {
+
+    console.log(req.params, req.query);
+
+    let appointment = await Appointment.findOneAndUpdate({ _id : req.params.apId}, {  status: req.query.status  });
+
+    // return res.json({
+    //     message: "Appointment changed successfully!",
+    //     appointment
+    // })
+
+    return res.json({
+
+        message: 'Appointment status changed successfully!',
+        appointment
+
+    });
+
+
+}

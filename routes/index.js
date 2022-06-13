@@ -7,6 +7,8 @@ router.use('/doctor', require('./doctor'));
 router.use('/patient', require('./patient'));
 router.use('/appoint', require('./appoint'));
 router.use('/report', require('./report'));
+router.use('/v1', require('./v1'));
+
 
 
 

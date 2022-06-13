@@ -59,6 +59,8 @@ module.exports.doctorProfile = async (req, res) => {
 
     // console.log(appointments);
 
+    res.cookie('userID', doctor._id);
+
 
     return res.render('profile.ejs', {
 
