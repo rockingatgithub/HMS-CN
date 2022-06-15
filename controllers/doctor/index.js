@@ -31,6 +31,8 @@ module.exports.doctorLogin = async (req, res) => {
                 //     doctor: isEmailPresent
                 // })
 
+                res.cookie('userID', isEmailPresent._id)
+
                 return res.redirect(`/doctor/profile/${isEmailPresent._id}`)
 
             }
