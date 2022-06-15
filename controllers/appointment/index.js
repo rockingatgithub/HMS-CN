@@ -30,7 +30,7 @@ module.exports.getAppointment = async (req, res) => {
 
 module.exports.changeAppointment = async (req, res) => {
 
-    console.log(req.params, req.query);
+    console.log(req.params, req.query,'>>>>>' ,req.cookies);
 
     let appointment = await Appointment.findOneAndUpdate({ _id : req.params.apId}, {  status: req.query.status  });
 
@@ -62,7 +62,11 @@ module.exports.appointmentPage = async (req, res) => {
 
 module.exports.changeAppointmentV1 = async (req, res) => {
 
-    console.log(req.params, req.query);
+    // console.log(req.params, req.query);
+    console.log(req.params, req.query, req.cookies);
+
+
+   
 
     let appointment = await Appointment.findOneAndUpdate({ _id : req.params.apId}, {  status: req.query.status  });
 
