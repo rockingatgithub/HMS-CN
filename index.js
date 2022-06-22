@@ -5,6 +5,7 @@ const app = express();
 const ejs = require('ejs');
 const path = require('path');
 const passport = require('./config/passport-local-strategy');
+const passGithubStrategy = require('./config/passport-github-strategy');
 app.use(require('express-session')({ secret: 'keyboard', resave: true, saveUninitialized: true,  }));
 
 // const router = require('./routes/index');
